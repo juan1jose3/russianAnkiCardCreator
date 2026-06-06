@@ -9,12 +9,14 @@ acquire_audio = Blueprint("make_create",__name__)
 load_dotenv()
 
 
-@acquire_audio.route("/audio/<filename>/word/<word>", methods=["GET"])
-def get_audio(filename,word):
+@acquire_audio.route("/audio/word/<word>", methods=["GET"])
+def get_audio(word):
 
     try:
-        for file in os.listdir("audioFiles"):
-            if filename == file:
+        anki_media = os.path.expanduser("~/.var/app/net.ankiweb.Anki/data/Anki2/User 1/collection.media/")
+
+        for file in os.listdir(anki_media):
+            if f"{word}.mp3" == file:
                 return "File already saved!"
     
         elevenlabs = ElevenLabs(
@@ -32,9 +34,7 @@ def get_audio(filename,word):
         for chunck in audio:
             audio_bytes += chunck
         
-        anki_media = os.path.expanduser("~/.var/app/net.ankiweb.Anki/data/Anki2/User 1/collection.media/")
-
-        with open(f"{anki_media}{filename}.mp3", "wb") as file:
+        with open(f"{anki_media}{word}.mp3", "wb") as file:
             file.write(audio_bytes)
 
         
