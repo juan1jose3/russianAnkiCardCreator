@@ -1,13 +1,25 @@
 import requests
+import json
 
+while True:
+    front = input("Front: ")
+    if front == "-1":
+        break
+    back = input("Back: ")
+    deck = input("Deck: ")
 
-front = input("Front: ")
-back = input("Back: ")
-deck = input("Deck: ")
+    word_audio = {"word":front}
 
+    payload = {
+        "front":front,
+        "back":back,
+        "deck":deck
+    }
 
-request_audio = requests.get(f"http://localhost:5000/audio/word/{front}")
-print(request_audio)
+    request_audio = requests.post(f"http://localhost:5000/audio", json=word_audio)
 
-request_create = requests.post(f"http://localhost:5000/create/front/{front}/back/{back}/deck/{deck}")
-print(request_create)
+    print(request_audio.json())
+
+    request_create = requests.post(f"http://localhost:5000/create", json=payload)
+
+    print(request_create.json())

@@ -1,13 +1,17 @@
-from flask import Blueprint
+from flask import Blueprint,request,jsonify
 import requests
-
 save_card = Blueprint("save_card",__name__)
 
 
-@save_card.route("/create/front/<front>/back/<back>/deck/<deck>", methods=["POST"])
-def create_card(front, back, deck):
+@save_card.route("/create", methods=["POST"])
+def create_card():
 
     try:
+        petition = request.get_json()
+
+        front = petition["front"]
+        back = petition["back"]
+        deck = petition["deck"]
 
         response = requests.post(
             "http://localhost:8765",
@@ -30,9 +34,9 @@ def create_card(front, back, deck):
             }
         )
         print(response.json())
-        return f"card created! -----> {response}"
+        return jsonify({"message":"Card created!", "anki_response": response.json()})
     except Exception as e:
-        return f"Error at: {e}"
+        return jsonify({"error": str(e)})
 
 
 

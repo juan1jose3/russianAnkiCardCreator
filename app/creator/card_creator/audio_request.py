@@ -1,18 +1,24 @@
-from flask import Blueprint
+from flask import Blueprint,jsonify,request
 from dotenv import load_dotenv
 from elevenlabs.client import ElevenLabs
 from elevenlabs.play import play
 import os
 
 
+
 acquire_audio = Blueprint("make_create",__name__)
 load_dotenv()
 
 
-@acquire_audio.route("/audio/word/<word>", methods=["GET"])
-def get_audio(word):
+@acquire_audio.route("/audio", methods=["POST"])
+def get_audio():
 
     try:
+        content = request.get_json()
+        word = content["word"]
+
+         
+
         anki_media = os.path.expanduser("~/.var/app/net.ankiweb.Anki/data/Anki2/User 1/collection.media/")
 
         for file in os.listdir(anki_media):
@@ -39,9 +45,9 @@ def get_audio(word):
 
         
 
-        return "File requested and saved"
+        return jsonify({"message":"audio created"})
 
     except Exception as e:
-        return f"error at: {e}"
+        return jsonify({"error": str(e)})
 
 
