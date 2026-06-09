@@ -13,6 +13,8 @@ def create_card():
         back = petition["back"]
         deck = petition["deck"]
 
+        front = front.replace("?","").replace("!","").replace(",","").replace("/","").replace(":","").replace("*","").strip()
+
         response = requests.post(
             "http://localhost:8765",
             json={

@@ -23,7 +23,7 @@ def get_audio():
 
         for file in os.listdir(anki_media):
             if f"{word}.mp3" == file:
-                return "File already saved!"
+                return jsonify({"message":"File already saved!"})
     
         elevenlabs = ElevenLabs(
             api_key=os.getenv("ELEVENLABS_API_KEY"),
@@ -40,7 +40,9 @@ def get_audio():
         for chunck in audio:
             audio_bytes += chunck
         
-        with open(f"{anki_media}{word}.mp3", "wb") as file:
+        filename = word.replace("?","").replace("!","").replace(",","").strip()
+
+        with open(f"{anki_media}{filename}.mp3", "wb") as file:
             file.write(audio_bytes)
 
         
