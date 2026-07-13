@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+
+{%block body%}
+<main class="main-container">
+    <div class="form-container">
+        <div class="form-card">
+            <form action="" method="post">
+                <legend>Create a new card</legend>
+                <fieldset>
+                    <div>
+                        <label for="front">Front: </label>
+                        <input type="text" name="front_card" id="front">
+                    </div>
+
+                    <div>
+                        <label for="back">Back: </label>
+                        <input type="text" name="back_card" id="back">
+                    </div>
+
+                    <div>
+                        <label for="deck">Deck: </label>
+                        <input type="text" name="deck_card" id="deck">
+                    </div>
+
+                    <button>Create!</button>
+                    
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
+
+{%endblock%}

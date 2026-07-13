@@ -1,0 +1,35 @@
+:root{
+    --space-indigo:#2B2D42;
+    --levander-gray:#8D99AE;
+    --platinum: #EDF2F4;
+    --punch-red: #EF233C;
+    --flag-red: #D90429;
+}
+
+@font-face {
+    font-family: 'Inter 28pt';
+    src: url('../fonts/Inter28pt-Regular.woff2') format('woff2'),
+        url('../fonts/Inter28pt-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    font-family: "Inter 28pt", sans-serif;
+    background-color: var(--platinum);
+    color: var(--space-indigo);
+}
+
+
+
+
+
