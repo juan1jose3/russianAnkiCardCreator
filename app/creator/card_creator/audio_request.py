@@ -19,7 +19,7 @@ def get_audio():
 
          
 
-        anki_media = os.path.expanduser("~/.var/app/net.ankiweb.Anki/data/Anki2/User 1/collection.media/")
+        anki_media = "/anki_media"
 
         for file in os.listdir(anki_media):
             if f"{word}.mp3" == file:
@@ -42,7 +42,7 @@ def get_audio():
         
         filename = word.replace("?","").replace("!","").replace(",","").strip()
 
-        with open(f"{anki_media}{filename}.mp3", "wb") as file:
+        with open(f"{anki_media}/{filename}.mp3", "wb") as file:
             file.write(audio_bytes)
 
         

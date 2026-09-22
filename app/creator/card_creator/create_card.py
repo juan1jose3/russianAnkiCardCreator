@@ -16,7 +16,7 @@ def create_card():
         front = front.replace("?","").replace("!","").replace(",","").replace("/","").replace(":","").replace("*","").strip()
 
         response = requests.post(
-            "http://localhost:8765",
+            "http://0.0.0.0:8765",
             json={
                 "action":"addNote",
                 "version": 6,

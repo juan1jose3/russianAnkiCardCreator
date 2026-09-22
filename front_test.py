@@ -16,10 +16,10 @@ while True:
         "deck":deck
     }
 
-    request_audio = requests.post("http://localhost:5000/audio", json=word_audio)
+    request_audio = requests.post("http://172.18.0.2:5000/audio", json=word_audio)
 
     print(request_audio.json())
 
-    request_create = requests.post("http://localhost:5000/create", json=payload)
+    request_create = requests.post("http://127.18.0.2:5000/create", json=payload)
 
     print(request_create.json())
