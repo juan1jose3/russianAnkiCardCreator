@@ -1,15 +1,16 @@
 :root{
-    --space-indigo:#2B2D42;
-    --levander-gray:#8D99AE;
-    --platinum: #EDF2F4;
-    --punch-red: #EF233C;
-    --flag-red: #D90429;
+    --background:#121212;
+    --card-background:#1E1E1E;
+    --critical-blue: #8EB2EB;
+    --mid-blue: #78A1E2;
+    --base-blue: #5C88D6;
+    --base-text: #E4E4E7;
 }
 
 @font-face {
     font-family: 'Inter 28pt';
-    src: url('../fonts/Inter28pt-Regular.woff2') format('woff2'),
-        url('../fonts/Inter28pt-Regular.woff') format('woff');
+    src: url('fonts/Inter28pt-Regular.woff2') format('woff2'),
+        url('fonts/Inter28pt-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -25,8 +26,16 @@
 
 body{
     font-family: "Inter 28pt", sans-serif;
-    background-color: var(--platinum);
-    color: var(--space-indigo);
+    background-color: var(--background);
+    color: var(--base-text);
+    
+}
+
+
+fieldset{
+    background-color: var(--card-background);
+    border: 2px solid var(--mid-blue);
+    border-radius: 12px;
 }
 
 
