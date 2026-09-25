@@ -4,28 +4,37 @@
 <main class="main-container">
     <div class="form-container">
         <div class="form-card">
+            <h2>Create a new card</h2>
             <form action="" method="post">
-                <legend>Create a new card</legend>
-                <fieldset>
-                    <div>
-                        <label for="front">Front: </label>
-                        <input type="text" name="front_card" id="front">
+                <div class="form-stuff">
+                    <div class="form-item">
+                        <div>
+                            <label for="front">Front: </label>
+                        </div>
+                        <input type="text" name="front_card" id="front" class="custom-field">
                     </div>
-
-                    <div>
-                        <label for="back">Back: </label>
-                        <input type="text" name="back_card" id="back">
+    
+                    <div class="form-item">
+                        <div>
+                            <label for="back">Back: </label>
+                        </div>
+                        <input type="text" name="back_card" id="back" class="custom-field">
                     </div>
-
-                    <div>
-                        <label for="deck">Deck: </label>
-                        <input type="text" name="deck_card" id="deck">
+    
+                    <div class="form-item">
+                        <div>
+                            <label for="deck">Deck: </label>
+                        </div>
+                        <input type="text" name="deck_card" id="deck" class="custom-field">
                     </div>
-
-                    <button>Create!</button>
+                </div>
+                
+                <div class="button-wrapper">
+                    <button class="create-button">Create!</button>
                     
-                </fieldset>
+                </div>
             </form>
+            
         </div>
     </div>
 </main>

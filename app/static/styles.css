@@ -1,10 +1,21 @@
 :root{
+    --step--2: clamp(0.7813rem, 0.7736rem + 0.0341vw, 0.8rem);
+    --step--1: clamp(0.9375rem, 0.9119rem + 0.1136vw, 1rem);
+    --step-0: clamp(1.125rem, 1.0739rem + 0.2273vw, 1.25rem);
+    --step-1: clamp(1.35rem, 1.2631rem + 0.3864vw, 1.5625rem);
+    --step-2: clamp(1.62rem, 1.4837rem + 0.6057vw, 1.9531rem);
+    --step-3: clamp(1.944rem, 1.7405rem + 0.9044vw, 2.4414rem);
+    --step-4: clamp(2.3328rem, 2.0387rem + 1.3072vw, 3.0518rem);
+    --step-5: clamp(2.7994rem, 2.384rem + 1.8461vw, 3.8147rem);
+
     --background:#121212;
     --card-background:#1E1E1E;
     --critical-blue: #8EB2EB;
     --mid-blue: #78A1E2;
     --base-blue: #5C88D6;
     --base-text: #E4E4E7;
+    --elevated-background: #2C2C2C;
+    --dark-border: #4A4A4A;
 }
 
 @font-face {
@@ -32,11 +43,73 @@ body{
 }
 
 
-fieldset{
+.form-container{
+    padding-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form-card{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 2rem 2rem;
     background-color: var(--card-background);
     border: 2px solid var(--mid-blue);
     border-radius: 12px;
 }
+
+.form-card form .form-stuff{
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+
+
+.button-wrapper{
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+
+.form-item .custom-field{
+    background-color: var(--elevated-background);
+    border-radius: 6px;
+    color: #F3F3F3;
+    height:70%;
+    border: 2px solid var(--dark-border);
+    transition: border 0.2s ease-in-out , outline 0.2s ease-in-out;
+}
+
+.form-item .custom-field:hover,
+.form-item .custom-field:focus{
+    border:2px solid var(--base-blue);
+    outline: var(--base-blue);
+}
+
+.create-button{
+    background-color: var(--base-blue);
+    color: var(--base-text);
+    border: none;
+    width: 40%;
+    height: 40px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: var(--step-0);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.create-button:hover{
+    background-color: var(--mid-blue);
+}
+
 
 
 
