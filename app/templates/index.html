@@ -39,6 +39,9 @@
     </div>
 
     <div class="card-admin-view"></div>
+    {% block scripts %}
+    <script src="{{url_for('static', filename='js/render_due.js')}}" defer></script>
+    {%endblock%}
 </main>
 
 {%endblock%}

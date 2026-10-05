@@ -1,4 +1,4 @@
-from flask import Blueprint,request,jsonify
+from flask import Blueprint,request,jsonify, render_template
 import requests
 
 
@@ -41,7 +41,7 @@ def get_due_cards():
             }
         )
 
-        return card_details.json()
+        return card_details.json()["result"]
 
     except Exception as e:
         return jsonify({"error": str(e)})
