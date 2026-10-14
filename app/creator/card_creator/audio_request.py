@@ -16,9 +16,6 @@ def get_audio():
     try:
         content = request.get_json()
         word = content["word"]
-
-         
-
         anki_media = "/anki_media"
 
         for file in os.listdir(anki_media):

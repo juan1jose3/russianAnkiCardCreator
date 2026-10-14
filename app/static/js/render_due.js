@@ -9,10 +9,13 @@ async function getCards() {
         return;
     }
 
-    const sampleFields = response[0].fields || response[0];
-    const headers = Object.keys(sampleFields);
+   response.forEach(card => {
 
-    cardAdminView.textContent = JSON.stringify(response, null, 2);
+    cardAdminView.innerHTML = `
+        <div>${card.fields.Front}</div>
+    
+    `
+   });
 
 }
 
