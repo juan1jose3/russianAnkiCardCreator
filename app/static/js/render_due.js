@@ -9,12 +9,19 @@ async function getCards() {
         return;
     }
 
+    console.log(response);
+
    response.forEach(card => {
 
-    cardAdminView.innerHTML = `
-        <div>${card.fields.Front}</div>
+    cardAdminView.innerHTML += `
+    <tr>
+        <td>Front: ${card.fields.Front.value}</td>
+        <td>Back: ${card.fields.Back.value}</td>
+    </tr>
+    
     
     `
+
    });
 
 }
