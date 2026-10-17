@@ -122,11 +122,33 @@ body{
 
 
 .card-admin-view{
+    width: 70%;
     margin-top: 2.5rem;
 }
 
 
 
+.due-cards-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 1rem;
+    color: var(--base-text);
+}
 
+.due-cards-table th,
+.due-cards-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--dark-border);
+    text-align: left;
+}
 
+.due-cards-table th {
+    background-color: var(--elevated-background);
+    color: var(--critical-blue);
+    font-weight: 600;
+}
 
+.due-cards-table tr:hover {
+    background-color: rgba(92, 136, 214, 0.1);
+}

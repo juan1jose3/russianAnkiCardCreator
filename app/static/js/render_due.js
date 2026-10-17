@@ -1,29 +1,53 @@
 const cardAdminView = document.querySelector(".card-admin-view");
 
+function stripSoundMarks(text){
+    return text.replace(/\[sound:[^\]]*\]/g, "").trim();
+}
+
 async function getCards() {
-    const cards = await fetch("/due_cards");
-    const response = await cards.json();
+    try{
+        const res = await fetch("/due_cards");
+        const data = await res.json();
 
-    if(!response){
-        cardAdminView.textContent = "No cards to display";
-        return;
+        if(!res.ok || data.error){
+            cardAdminView.innerHTML = `<p class="error">Error loading cards: ${data.error || res.statusText}</p>`;
+            return;
+        }
+
+        if(!Array.isArray(data) || data.length === 0){
+            cardAdminView.innerHTML = "<p>No cards due for review!</p>";   
+            return;   
+        }
+
+        const rows = data.map(card => {
+            const front = card.fields?.Front?.value || "(No front)";
+            const back = card.fields?.Back?.value || "(No back)";
+            return `
+                <tr>
+                    <td>${stripSoundMarks(front)}</td>
+                    <td>${stripSoundMarks(back)}</td>
+                </tr>
+            `;
+        }).join("");
+
+        cardAdminView.innerHTML = `
+            <table class="due-cards-table">
+                <thead>
+                    <tr>
+                        <th>Front</th>
+                        <th>Back</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows}
+                </tbody>
+            </table>
+        `;
+
+    }catch(err){
+        console.error("Failed to fetch cards:", err);
+        cardAdminView.innerHTML = "<p>Could not connect to the server.</p>";
     }
-
-    console.log(response);
-
-   response.forEach(card => {
-
-    cardAdminView.innerHTML += `
-    <tr>
-        <td>Front: ${card.fields.Front.value}</td>
-        <td>Back: ${card.fields.Back.value}</td>
-    </tr>
-    
-    
-    `
-
-   });
-
 }
 
 getCards();

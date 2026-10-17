@@ -7,44 +7,34 @@ due_cards = Blueprint("due_cards",__name__)
 ANKI_ADDRESS = "http://172.17.0.1:8765"
 
 
-def get_card_ids():
-    try:
+def query_anki(action, params=None):
+    payload = {"action":action, "version":6}
 
-        ids = requests.get(
-            ANKI_ADDRESS,
-            json={
-                "action": "findCards",
-                "version": 6,
-                "params": {
-                    "query" : "deck:\"Russian\" is:due"
-                }
-            }
-        )
+    if params:
+        payload["params"] = params
 
-        return ids.json()["result"]
-    except Exception as e:
-        return jsonify({"error_fetching": str(e)})
+    response = requests.post(ANKI_ADDRESS, json=payload, timeout=5)
+    data = response.json()
+
+    if data.get("error"):
+        raise RuntimeError(data["error"])  
+    return data.get("result", []) 
+
 
 
 @due_cards.route("/due_cards", methods=["GET"])
 def get_due_cards():
     try:
-        ids = get_card_ids()
+        ids = query_anki("findCards", {"query": 'deck:"Russian" is:due'})
 
-        card_details= requests.get(ANKI_ADDRESS,
-            json={
-                "action":"cardsInfo",
-                "version":6,
-                "params":{
-                    "cards":[*ids]
-                }
-            }
-        )
+        if not ids:
+            return jsonify([])
 
-        return card_details.json()["result"]
+        card_details = query_anki("cardsInfo", {"cards": ids})
+        return card_details
 
     except Exception as e:
-        return jsonify({"error": str(e)})
+        return jsonify({"error": str(e)}), 500
 
 
 
