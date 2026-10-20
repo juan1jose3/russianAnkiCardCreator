@@ -19,13 +19,15 @@ async function getCards() {
             return;   
         }
 
-        const rows = data.map(card => {
+        const rows = data.map((card, cardIndex) => {
             const front = card.fields?.Front?.value || "(No front)";
             const back = card.fields?.Back?.value || "(No back)";
             return `
                 <tr>
+                    <td>${cardIndex}</td>
                     <td>${stripSoundMarks(front)}</td>
                     <td>${stripSoundMarks(back)}</td>
+                    <td><button>Edit</button><button>Delete</button></td>
                 </tr>
             `;
         }).join("");
@@ -34,8 +36,10 @@ async function getCards() {
             <table class="due-cards-table">
                 <thead>
                     <tr>
+                        <th>Entry</th>
                         <th>Front</th>
                         <th>Back</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
