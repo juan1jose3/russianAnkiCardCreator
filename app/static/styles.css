@@ -16,6 +16,10 @@
     --base-text: #E4E4E7;
     --elevated-background: #2C2C2C;
     --dark-border: #4A4A4A;
+    --edit-button: #2E5A88;
+    --edit-hover:#3A6FA3;
+    --delete-button:#8B2D2D;
+    --delete-hover:#A63A3A;
 }
 
 @font-face {
@@ -151,4 +155,42 @@ body{
 
 .due-cards-table tr:hover {
     background-color: rgba(92, 136, 214, 0.1);
+}
+
+.button-action-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.edit-btn,
+.delete-btn{
+    border: transparent;
+    outline: none;
+    text-transform: uppercase;
+    padding: 5px 5px 5px 5px;
+    width: 100px;
+    border-radius: 12px;
+    text-align: center;
+    color: var(--base-text);
+    transition: background-color 0.2s ease-in;
+    cursor: pointer;
+}
+
+.edit-btn{
+    background-color: var(--edit-button);
+}
+
+.edit-btn:hover{
+    background-color: var(--edit-hover);
+}
+
+.delete-btn{
+    background-color: var(--delete-button);
+}
+
+.delete-btn:hover{
+    background-color: var(--delete-hover);
 }

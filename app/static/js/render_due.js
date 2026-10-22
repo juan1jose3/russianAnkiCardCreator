@@ -27,7 +27,12 @@ async function getCards() {
                     <td>${cardIndex}</td>
                     <td>${stripSoundMarks(front)}</td>
                     <td>${stripSoundMarks(back)}</td>
-                    <td><button>Edit</button><button>Delete</button></td>
+                    <td>
+                        <div class="button-action-container">
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </td>
                 </tr>
             `;
         }).join("");

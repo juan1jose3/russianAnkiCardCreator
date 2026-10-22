@@ -9,6 +9,33 @@ import os
 acquire_audio = Blueprint("make_create",__name__)
 load_dotenv()
 
+def request_text_to_speech(word):
+    anki_media = "/anki_media"
+    for file in os.listdir(anki_media):
+        if f"{word}.mp3" == file:
+            return jsonify({"message":"File already saved!"})
+
+    elevenlabs = ElevenLabs(
+        api_key=os.getenv("ELEVENLABS_API_KEY"),
+    )
+
+    audio = elevenlabs.text_to_speech.convert(
+        text=word,
+        voice_id="hiAckf4ty3e9BrT4e10G",  
+        model_id="eleven_v3",
+        output_format="mp3_44100_128",
+    )
+
+    audio_bytes = b""
+    for chunck in audio:
+        audio_bytes += chunck
+
+    filename = word.replace("?","").replace("!","").replace(",","").strip()
+
+    with open(f"{anki_media}/{filename}.mp3", "wb") as file:
+        file.write(audio_bytes)
+
+
 
 @acquire_audio.route("/audio", methods=["POST"])
 def get_audio():
@@ -16,34 +43,7 @@ def get_audio():
     try:
         content = request.get_json()
         word = content["word"]
-        anki_media = "/anki_media"
-
-        for file in os.listdir(anki_media):
-            if f"{word}.mp3" == file:
-                return jsonify({"message":"File already saved!"})
-    
-        elevenlabs = ElevenLabs(
-            api_key=os.getenv("ELEVENLABS_API_KEY"),
-        )
-
-        audio = elevenlabs.text_to_speech.convert(
-            text=word,
-            voice_id="hiAckf4ty3e9BrT4e10G",  
-            model_id="eleven_v3",
-            output_format="mp3_44100_128",
-        )
-
-        audio_bytes = b""
-        for chunck in audio:
-            audio_bytes += chunck
-        
-        filename = word.replace("?","").replace("!","").replace(",","").strip()
-
-        with open(f"{anki_media}/{filename}.mp3", "wb") as file:
-            file.write(audio_bytes)
-
-        
-
+        request_text_to_speech(word)
         return jsonify({"message":"audio created"})
 
     except Exception as e:
