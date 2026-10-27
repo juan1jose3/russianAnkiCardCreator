@@ -43,7 +43,7 @@ body{
     font-family: "Inter 28pt", sans-serif;
     background-color: var(--background);
     color: var(--base-text);
-    
+    padding-bottom: 2.5rem;
 }
 
 
@@ -124,6 +124,39 @@ body{
     background-color: var(--mid-blue);
 }
 
+
+.filter-controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 2rem;
+}
+
+.filter-btn{
+    background-color: var(--elevated-background);
+    color: var(--base-text);
+    border: 2px solid var(--dark-border);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: var(--step--1);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.filter-btn:hover{
+    border-color: var(--mid-blue);
+    color: var(--critical-blue);
+}
+
+.filter-btn.active{
+    background-color: var(--base-blue);
+    border-color: var(--base-blue);
+    color: #ffffff;
+    font-weight: bold;
+}
 
 .card-admin-view{
     width: 70%;
