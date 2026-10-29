@@ -21,7 +21,7 @@ def query_anki(action, params=None):
 
 
 
-@card_info_data.route("/due_cards", methods=["GET"])
+@card_info_data.route("/request_cards", methods=["GET"])
 def get_due_cards():
     try:
         status = request.args.get("status")
