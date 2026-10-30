@@ -38,16 +38,18 @@
         </div>
     </div>
 
-    <div class="filter-controls">
-        <button class="filter-btn active" data-status="due">Due Cards</button>
-        <button class="filter-btn" data-status="new">New Cards</button>          
-        <button class="filter-btn" data-status="all">All Cards</button>
+    <div class="admin-view">
+        <div class="filter-controls">
+            <button class="filter-btn active" data-status="due">Due Cards</button>
+            <button class="filter-btn" data-status="new">New Cards</button>          
+            <button class="filter-btn" data-status="all">All Cards</button>
+        </div>
+    
+        <div class="card-admin-view"></div>
+        {% block scripts %}
+        <script src="{{url_for('static', filename='js/render_data.js')}}" defer></script>
+        {%endblock%}
     </div>
-
-    <div class="card-admin-view"></div>
-    {% block scripts %}
-    <script src="{{url_for('static', filename='js/render_data.js')}}" defer></script>
-    {%endblock%}
 </main>
 
 {%endblock%}

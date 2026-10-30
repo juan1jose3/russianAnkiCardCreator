@@ -14,6 +14,7 @@ async function get_cards(state="due"){
             return;
         }
         
+        //console.log(data);
         renderInfo(data);
 
     }catch(err){
@@ -38,8 +39,8 @@ function renderInfo(cardData){
                 <td>${stripSoundMarks(back)}</td>
                 <td>
                     <div class="button-action-container">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
+                        <button class="edit-btn" data-card-id="${card.cardId}">Edit</button>
+                        <button class="delete-btn" data-card-id=${card.cardId}>Delete</button>
                     </div>
                 </td>
             </tr>
@@ -65,12 +66,17 @@ function renderInfo(cardData){
 
 
 function getButtonStatus(){
-    const filterControls = document.querySelector(".filter-controls");
+    const adminView = document.querySelector(".admin-view");
 
-    filterControls.addEventListener("click", async event => {
+    adminView.addEventListener("click", async event => {
         const btn = event.target.closest("button");
-        const status = btn.dataset.status;
-        const cardData = await get_cards(status);
+        if(btn.classList.contains("filter-btn")){
+            const btn = event.target.closest("button");
+            const status = btn.dataset.status;
+            const cardData = await get_cards(status);
+        }else if(btn.classList.contains("delete-btn")){
+
+        }
     });
 }
 
