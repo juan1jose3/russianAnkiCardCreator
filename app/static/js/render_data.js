@@ -39,8 +39,8 @@ function renderInfo(cardData){
                 <td>${stripSoundMarks(back)}</td>
                 <td>
                     <div class="button-action-container">
-                        <button class="edit-btn" data-card-id="${card.cardId}">Edit</button>
-                        <button class="delete-btn" data-card-id=${card.cardId}>Delete</button>
+                        <button class="edit-btn" data-card-id="${card.note}">Edit</button>
+                        <button class="delete-btn" data-card-id=${card.note}>Delete</button>
                     </div>
                 </td>
             </tr>
@@ -75,7 +75,9 @@ function getButtonStatus(){
             const status = btn.dataset.status;
             const cardData = await get_cards(status);
         }else if(btn.classList.contains("delete-btn")){
-
+            console.log(await fetch(`/delete_card/${btn.dataset.cardId}`,{
+                method:"DELETE"
+            }));
         }
     });
 }
