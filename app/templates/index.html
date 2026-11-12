@@ -38,6 +38,40 @@
         </div>
     </div>
 
+    <dialog class="dialog-item" id="edit-dialog">
+        <div class="dialog-content">
+            <h2>Edit Card</h2>
+            <form action="" id="edit-card-form">
+                <input type="hidden" name="card_id" id="edit-card-id">
+                <div class="form-stuff">
+                    <div class="form-item">
+                        <div>
+                            <label for="edit-front">Front: *</label>
+                        </div>
+                        <input type="text" id="edit-front" name="front_card" class="custom-field" required>
+                    </div>
+                    <div class="form-item">
+                        <div>
+                            <label for="edit-back">Back: *</label>
+                        </div>
+                        <input type="text" id="edit-back" name="back_card" class="custom-field" required>
+                    </div>
+                    <div class="form-item">
+                        <div>
+                            <label for="edit-deck">Deck: *</label>
+                        </div>
+                        <input type="text" id="edit-deck" name="deck_card" class="custom-field" required>
+                    </div>
+                </div>
+
+                <div class="dialog-button-wrapper">
+                    <button type="submit" class="modal-save-btn">Save Changes</button>
+                    <button type="button" class="modal-cancel-btn" id="close-dialog-btn" commandfor="edit-dialog" command="close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
     <div class="admin-view">
         <div class="filter-controls">
             <button class="filter-btn active" data-status="due">Due Cards</button>

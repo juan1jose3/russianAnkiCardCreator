@@ -78,6 +78,9 @@ function getButtonStatus(){
             console.log(await fetch(`/delete_card/${btn.dataset.cardId}`,{
                 method:"DELETE"
             }));
+        } else if (btn.classList.contains("edit-btn")) {
+          const editDialog = document.querySelector("#edit-dialog");
+          editDialog.showModal();
         }
     });
 }
