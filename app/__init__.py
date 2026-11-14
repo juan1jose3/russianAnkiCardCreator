@@ -9,6 +9,7 @@ def create_app():
     from creator.card_creator.request_cards import card_info_data
 
     from creator.card_manager.delete_module import delete_endpoint
+    from creator.card_manager.edit_module import edit_endpoint
     from views import views 
 
     app.register_blueprint(acquire_audio)
@@ -17,5 +18,6 @@ def create_app():
     app.register_blueprint(views)
 
     app.register_blueprint(delete_endpoint)
+    app.register_blueprint(edit_endpoint)
 
     return app

@@ -1,3 +1,4 @@
+// I have to modify this file, divide it into multiple files and change its name
 const cardAdminView = document.querySelector(".card-admin-view");
 
 function stripSoundMarks(text){
@@ -74,6 +75,7 @@ function getButtonStatus(){
             const btn = event.target.closest("button");
             const status = btn.dataset.status;
             const cardData = await get_cards(status);
+            console.log(cardData);
         }else if(btn.classList.contains("delete-btn")){
             console.log(await fetch(`/delete_card/${btn.dataset.cardId}`,{
                 method:"DELETE"
@@ -81,6 +83,12 @@ function getButtonStatus(){
         } else if (btn.classList.contains("edit-btn")) {
           const editDialog = document.querySelector("#edit-dialog");
           editDialog.showModal();
+
+        } else if (btn.classList.contains("edit-action")) {
+          const cardId = document.querySelector(".edit-btn").dataset.cardId
+          const editingStatus = await fetch(`/edit_card/${cardId}`,{
+            method:"PUT"
+          });
         }
     });
 }

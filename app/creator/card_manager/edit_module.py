@@ -4,7 +4,7 @@ edit_endpoint = Blueprint("edit_endpoint", __name__)
 
 
 # I have to modify this endpoint
-@edit_endpoint.route("edit_card/<int:card_id>", methods=["PUT"])
+@edit_endpoint.route("/edit_card/<int:card_id>", methods=["PUT"])
 def edit_card(card_id):
     try:
         front = request.form["front_card"]
